@@ -1,0 +1,53 @@
+{
+  "node": {
+    "localPath": "/Users/ganesholi/Developer/application/wasm-todolist/contract/todo_list/bin/swanky-node",
+    "polkadotPalletVersions": "polkadot-v0.9.33",
+    "supportedInk": "v4.0.0"
+  },
+  "accounts": [
+    {
+      "alias": "alice",
+      "mnemonic": "//Alice",
+      "isDev": true,
+      "address": "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY"
+    },
+    {
+      "alias": "bob",
+      "mnemonic": "//Bob",
+      "isDev": true,
+      "address": "5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty"
+    }
+  ],
+  "contracts": {
+    "todo_list": {
+      "name": "todo_list",
+      "deployments": [
+        {
+          "timestamp": 1676358721609,
+          "address": "X1DjFtxusYYBLnaTXhvXTqNLpGmFWpx6vH6duMkLsfSguac",
+          "networkUrl": "wss://rpc.shibuya.astar.network",
+          "deployerAlias": "alice"
+        }
+      ],
+      "language": "ink",
+      "build": {
+        "timestamp": 1676358662028,
+        "artifactsPath": "/Users/ganesholi/Developer/application/wasm-todolist/contract/todo_list/artifacts/todo_list/1676358662028"
+      }
+    }
+  },
+  "networks": {
+    "local": {
+      "url": "ws://127.0.0.1:9944"
+    },
+    "astar": {
+      "url": "wss://rpc.astar.network"
+    },
+    "shiden": {
+      "url": "wss://rpc.shiden.astar.network"
+    },
+    "shibuya": {
+      "url": "wss://rpc.shibuya.astar.network"
+    }
+  }
+}
