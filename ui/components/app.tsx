@@ -111,6 +111,48 @@ const Home: NextPage = () => {
     }
   };
 
+  const getLength = async () => {
+    const provider = new WsProvider(WS_PROVIDER);
+    const api = new ApiPromise(options({ provider }));
+
+    await api.isReady;
+
+    const abi = new Abi(abiData, api.registry.getChainProperties());
+
+    const contract = new ContractPromise(api, abi, address);
+
+    const { gasRequired, result, output } = await contract.query.getTodoLength(
+      address,
+      {
+        gasLimit: api.registry.createType("WeightV2", {
+          refTime,
+          proofSize,
+        }) as WeightV2,
+        storageDepositLimit,
+      }
+    );
+
+    // const result = await api.call.contractsApi.call(address, contract.address, 0, null, null, msg.toU8a(msg.args.map((_) => account.address)))
+
+    // The actual result from RPC as `ContractExecResult`
+    console.log(result.toHuman());
+
+    // the gas consumed for contract execution
+    console.log(gasRequired.toHuman());
+
+    // check if the call was successful
+    if (result.isOk) {
+      // output the return value
+      console.log("Success", output?.toHuman());
+
+      if (output) {
+        setValue(output?.toString());
+      }
+    } else {
+      console.error("Error", result.asErr);
+    }
+  };
+
   const read = async () => {
     const provider = new WsProvider(WS_PROVIDER);
     const api = new ApiPromise(options({ provider }));
@@ -122,105 +164,6 @@ const Home: NextPage = () => {
     const contract = new ContractPromise(api, abi, address);
 
     await query(api, contract, address);
-  };
-
-  const flip = async () => {
-    const provider = new WsProvider(WS_PROVIDER);
-    const api = new ApiPromise(options({ provider }));
-
-    await api.isReady;
-
-    api.setSigner(extensions[0].signer);
-
-    console.log("API is ready");
-
-    const abi = new Abi(abiData, api.registry.getChainProperties());
-
-    const contract = new ContractPromise(api, abi, address);
-
-    const { gasRequired, result, output } = await contract.query.flip(address, {
-      gasLimit: api.registry.createType("WeightV2", {
-        refTime,
-        proofSize,
-      }) as WeightV2,
-      storageDepositLimit,
-    });
-
-    const gasLimit = api.registry.createType(
-      "WeightV2",
-      gasRequired
-    ) as WeightV2;
-
-    setLoading(true);
-
-    // Send the transaction, like elsewhere this is a normal extrinsic
-    // with the same rules as applied in the API (As with the read example,
-    // additional params, if required can follow)
-    try {
-      await contract.tx
-        .flip({
-          gasLimit: gasLimit,
-          storageDepositLimit,
-        })
-        .signAndSend(account, async (res) => {
-          if (res.status.isInBlock) {
-            console.log("in a block");
-            setLoading(false);
-          } else if (res.status.isFinalized) {
-            console.log("finalized");
-          }
-        });
-
-      await query(api, contract, address);
-    } catch (e) {
-      console.error(e);
-      setLoading(false);
-    }
-  };
-
-  const addTodoItem = async () => {
-    const provider = new WsProvider(WS_PROVIDER);
-    const api = new ApiPromise(options({ provider }));
-
-    await api.isReady;
-
-    api.setSigner(extensions[0].signer);
-
-    const abi = new Abi(abiData, api.registry.getChainProperties());
-
-    const contract = new ContractPromise(api, abi, address);
-    const gasLimit = api.registry.createType("WeightV2", {
-      refTime,
-      proofSize,
-    }) as any;
-
-    setLoading(true);
-
-    // Send the transaction, like elsewhere this is a normal extrinsic
-    // with the same rules as applied in the API (As with the read example,
-    // additional params, if required can follow)
-    try {
-      await contract.tx
-        .createTodoItem(
-          {
-            gasLimit: gasLimit,
-            storageDepositLimit,
-          },
-          newTodo,
-          "low"
-        )
-        .signAndSend(account, async (res) => {
-          if (res.status.isInBlock) {
-            console.log("in a block");
-            setLoading(false);
-          } else if (res.status.isFinalized) {
-            console.log("finalized");
-          }
-        });
-    } catch (e) {
-      console.error(e);
-      setLoading(false);
-    }
   };
 
   return (
@@ -251,7 +194,6 @@ const Home: NextPage = () => {
 
             <div>
               <button onClick={read}>Read</button>
-              <button onClick={flip}>Flip</button>
             </div>
             <h4>{value}</h4>
           </>
@@ -268,6 +210,8 @@ const Home: NextPage = () => {
             </div>
           </>
         )}
+        <Divider />
+        <Button onClick={() => getLength()}>Get Length</Button>
         <AddItem
           account={account}
           address={address}
