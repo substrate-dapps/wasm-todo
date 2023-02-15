@@ -53,6 +53,16 @@ export default class Methods {
 	}
 
 	/**
+	 * getAllList
+	 *
+	*/
+	"getAllList" (
+		__options: GasLimit,
+	){
+		return buildSubmittableExtrinsic( this.__nativeContract, "getAllList", [], __options);
+	}
+
+	/**
 	 * removeTodoItem
 	 *
 	 * @param { (number | string | BN) } itemId,

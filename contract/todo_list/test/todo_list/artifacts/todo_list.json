@@ -1,6 +1,6 @@
 {
   "source": {
-    "hash": "0x488294784c6ea1a835235ba6bed3d2ce5711bd9f7453f7fabf6e0e8499988ab8",
+    "hash": "0x55d40b1b7ea8dbba3f36723a2bc943dc88d8b10586dd2ccd1509f8b49657744d",
     "language": "ink! 3.4.0",
     "compiler": "rustc 1.69.0-nightly"
   },
@@ -157,6 +157,20 @@
             "type": 13
           },
           "selector": "0xda72eabd"
+        },
+        {
+          "args": [],
+          "docs": [],
+          "label": "get_all_list",
+          "mutates": false,
+          "payable": false,
+          "returnType": {
+            "displayName": [
+              "Vec"
+            ],
+            "type": 13
+          },
+          "selector": "0xe7cec897"
         },
         {
           "args": [

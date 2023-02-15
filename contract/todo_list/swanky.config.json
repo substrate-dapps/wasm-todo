@@ -1,6 +1,6 @@
 {
   "node": {
-    "localPath": "/Users/ganesholi/Developer/application/wasm-todolist/contract/todo_list/bin/swanky-node",
+    "localPath": "/Users/ganesholi/Developer/application/wasm-todo/contract/todo_list/bin/swanky-node",
     "polkadotPalletVersions": "polkadot-v0.9.33",
     "supportedInk": "v4.0.0"
   },
@@ -23,16 +23,16 @@
       "name": "todo_list",
       "deployments": [
         {
-          "timestamp": 1676358721609,
-          "address": "X1DjFtxusYYBLnaTXhvXTqNLpGmFWpx6vH6duMkLsfSguac",
+          "timestamp": 1676455202614,
+          "address": "aSXMRprcM5Hzn7VziUJs1UnmauZ2eUtNJTwyqUB51nEb8ET",
           "networkUrl": "wss://rpc.shibuya.astar.network",
           "deployerAlias": "alice"
         }
       ],
       "language": "ink",
       "build": {
-        "timestamp": 1676358662028,
-        "artifactsPath": "/Users/ganesholi/Developer/application/wasm-todolist/contract/todo_list/artifacts/todo_list/1676358662028"
+        "timestamp": 1676455129097,
+        "artifactsPath": "/Users/ganesholi/Developer/application/wasm-todo/contract/todo_list/artifacts/todo_list/1676455129097"
       }
     }
   },

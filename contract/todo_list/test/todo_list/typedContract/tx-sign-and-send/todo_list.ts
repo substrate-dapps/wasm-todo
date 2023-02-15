@@ -70,6 +70,18 @@ export default class Methods {
 	}
 
 	/**
+	* getAllList
+	*
+	*/
+	"getAllList" (
+		__options ? : GasLimit,
+	){
+		return txSignAndSend( this.__apiPromise, this.__nativeContract, this.__keyringPair, "getAllList", (events: EventRecord) => {
+			return decodeEvents(events, this.__nativeContract, "todo_list");
+		}, [], __options);
+	}
+
+	/**
 	* removeTodoItem
 	*
 	* @param { (number | string | BN) } itemId,
