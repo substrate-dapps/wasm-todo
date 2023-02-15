@@ -1,7 +1,0 @@
-{
-  "projectFiles": [
-    "contracts/voting_contract/*"
-  ],
-  "artifactsPath": "artifacts",
-  "typechainGeneratedPath": "typedContract"
-}
