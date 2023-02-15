@@ -13,6 +13,7 @@
     "@types/jest": "^29.2.3",
     "@typescript-eslint/eslint-plugin": "^4.8.2",
     "@typescript-eslint/parser": "^4.8.2",
+    "antd": "^5.2.1",
     "eslint": "^7.26.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
@@ -39,10 +40,10 @@
     "test:single": "jest",
     "test:typechain": "jest --testPathPattern \".spec.ts$\" --runInBand",
     "postinstall": "patch-package",
-    "dev": "cd ui && next dev",
-    "build": "cd ui && next build",
-    "start": "cd ui && next start",
-    "lint": "cd ui && next lint"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "resolutions": {
     "@polkadot/api": "^9.6.1",
