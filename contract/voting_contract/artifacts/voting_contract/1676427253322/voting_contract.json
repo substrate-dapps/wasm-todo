@@ -1,6 +1,6 @@
-const abi = {
+{
   "source": {
-    "hash": "0xed45fb2b028dba0d1f4a00fe3365888f4abff44acb8a42141719b3b136be4954",
+    "hash": "0x4eac7085f8a1c6e7154847bac1af2d7997fbad4bb9711a8234a66a24c8db05dd",
     "language": "ink! 3.4.0",
     "compiler": "rustc 1.69.0-nightly"
   },
@@ -15,17 +15,7 @@ const abi = {
     "spec": {
       "constructors": [
         {
-          "args": [
-            {
-              "label": "initial_value",
-              "type": {
-                "displayName": [
-                  "bool"
-                ],
-                "type": 7
-              }
-            }
-          ],
+          "args": [],
           "docs": [],
           "label": "new",
           "payable": false,
@@ -733,6 +723,4 @@ const abi = {
       }
     ]
   }
-};
-
-export default abi;
+}

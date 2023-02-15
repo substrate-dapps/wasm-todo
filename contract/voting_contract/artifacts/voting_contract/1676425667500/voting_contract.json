@@ -1,6 +1,6 @@
-const abi = {
+{
   "source": {
-    "hash": "0xed45fb2b028dba0d1f4a00fe3365888f4abff44acb8a42141719b3b136be4954",
+    "hash": "0xa08e3800544793dd2222c5dcb6952e930c52f6e373c4eb8f1f41e2fef2256ecb",
     "language": "ink! 3.4.0",
     "compiler": "rustc 1.69.0-nightly"
   },
@@ -15,17 +15,7 @@ const abi = {
     "spec": {
       "constructors": [
         {
-          "args": [
-            {
-              "label": "initial_value",
-              "type": {
-                "displayName": [
-                  "bool"
-                ],
-                "type": 7
-              }
-            }
-          ],
+          "args": [],
           "docs": [],
           "label": "new",
           "payable": false,
@@ -238,7 +228,7 @@ const abi = {
         {
           "args": [],
           "docs": [],
-          "label": "get_active_proposal",
+          "label": "get_all_proposals",
           "mutates": true,
           "payable": false,
           "returnType": {
@@ -247,21 +237,7 @@ const abi = {
             ],
             "type": 11
           },
-          "selector": "0x70fa23c8"
-        },
-        {
-          "args": [],
-          "docs": [],
-          "label": "get_all_proposal",
-          "mutates": true,
-          "payable": false,
-          "returnType": {
-            "displayName": [
-              "Vec"
-            ],
-            "type": 11
-          },
-          "selector": "0xe5bb7d65"
+          "selector": "0xc1c80143"
         },
         {
           "args": [],
@@ -733,6 +709,4 @@ const abi = {
       }
     ]
   }
-};
-
-export default abi;
+}

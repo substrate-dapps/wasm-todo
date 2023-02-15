@@ -1,7 +1,0 @@
-{
-  "projectFiles": [
-    "contracts/todo_list/*"
-  ],
-  "artifactsPath": "artifacts",
-  "typechainGeneratedPath": "typedContract"
-}

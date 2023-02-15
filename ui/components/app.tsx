@@ -68,7 +68,7 @@ const Home: NextPage = () => {
 
   const query = async (api: ApiPromise, contract: ContractPromise, address: string) => {
     // (We perform the send from an account, here using Alice's address)
-    const { gasRequired, result, output } = await contract.query.getTodoList(
+    const { gasRequired, result, output } = await contract.query.getAllUsers(
       address,
       {
         gasLimit: api.registry.createType('WeightV2', {

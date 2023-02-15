@@ -1,4 +1,4 @@
-const abi = {
+{
   "source": {
     "hash": "0xed45fb2b028dba0d1f4a00fe3365888f4abff44acb8a42141719b3b136be4954",
     "language": "ink! 3.4.0",
@@ -733,6 +733,4 @@ const abi = {
       }
     ]
   }
-};
-
-export default abi;
+}
