@@ -1,17 +1,17 @@
-import { Button, Input, Space, Divider, List } from "antd";
 import { options } from "@astar-network/astar-api";
 import { ApiPromise, WsProvider } from "@polkadot/api";
 import { Abi, ContractPromise } from "@polkadot/api-contract";
 import {
   isWeb3Injected,
   web3Accounts,
-  web3Enable,
+  web3Enable
 } from "@polkadot/extension-dapp";
 import type {
   InjectedAccountWithMeta,
-  InjectedExtension,
+  InjectedExtension
 } from "@polkadot/extension-inject/types";
 import type { WeightV2 } from "@polkadot/types/interfaces";
+import { Button, Divider } from "antd";
 import type { NextPage } from "next";
 import { useCallback, useEffect, useState } from "react";
 
@@ -79,7 +79,7 @@ const Home: NextPage = () => {
     address: string
   ) => {
     // (We perform the send from an account, here using Alice's address)
-    const { gasRequired, result, output } = await contract.query.getTodoList(
+    const { gasRequired, result, output } = await contract.query.getAllList(
       address,
       {
         gasLimit: api.registry.createType("WeightV2", {
@@ -101,7 +101,7 @@ const Home: NextPage = () => {
     // check if the call was successful
     if (result.isOk) {
       // output the return value
-      console.log("Success", output?.toHuman());
+      console.log("this are todo list Success", output?.toHuman());
 
       if (output) {
         setValue(output?.toString());
@@ -165,6 +165,7 @@ const Home: NextPage = () => {
 
     await query(api, contract, address);
   };
+
 
   return (
     <div className={styles.container}>

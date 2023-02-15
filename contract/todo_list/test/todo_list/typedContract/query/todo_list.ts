@@ -63,6 +63,17 @@ export default class Methods {
 	}
 
 	/**
+	* getAllList
+	*
+	* @returns { Array<ReturnTypes.TodoItem> }
+	*/
+	"getAllList" (
+		__options ? : GasLimit,
+	): Promise< QueryReturnType< Array<ReturnTypes.TodoItem> > >{
+		return queryJSON( this.__nativeContract, this.__callerAddress, "getAllList", [], __options , (result) => { return handleReturnType(result, getTypeDescription(13, 'todo_list')); });
+	}
+
+	/**
 	* removeTodoItem
 	*
 	* @param { (number | string | BN) } itemId,

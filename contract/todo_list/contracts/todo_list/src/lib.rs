@@ -167,6 +167,19 @@ mod todo_list {
         }
 
         #[ink(message)]
+        pub fn get_all_list(&self) -> Vec<TodoItem> {
+            // let caller = self.env().caller();
+            let mut item: Vec<TodoItem> = Vec::new();
+            for _item in 0..self.item_id {
+                match self.item.get(_item) {
+                    Some(value) => item.push(value),
+                    None => (),
+                }
+            }
+            item
+        }
+
+        #[ink(message)]
         pub fn remove_todo_item(&mut self, item_id: TodoItemId) -> Result<(), TodoError> {
             let item = self.item.get(item_id).unwrap_or_default();
 
