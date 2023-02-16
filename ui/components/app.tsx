@@ -4,11 +4,11 @@ import { Abi, ContractPromise } from "@polkadot/api-contract";
 import {
   isWeb3Injected,
   web3Accounts,
-  web3Enable
+  web3Enable,
 } from "@polkadot/extension-dapp";
 import type {
   InjectedAccountWithMeta,
-  InjectedExtension
+  InjectedExtension,
 } from "@polkadot/extension-inject/types";
 import type { WeightV2 } from "@polkadot/types/interfaces";
 import { Button, Divider } from "antd";
@@ -18,6 +18,7 @@ import { useCallback, useEffect, useState } from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import abiData from "./abi";
+import GetAllList from "./GetAllList";
 import AddItem from "./AddItem";
 
 // local
@@ -38,14 +39,6 @@ const Home: NextPage = () => {
   const [account, setAccount] = useState<string>("");
   const [accounts, setAccounts] = useState<InjectedAccountWithMeta[]>([]);
   const [extensions, setExtensions] = useState<InjectedExtension[]>([]);
-
-  const [newTodo, setTodo] = useState("");
-
-  useEffect(() => {
-    if (address) {
-      read().catch(console.error);
-    }
-  }, [address]);
 
   // load Substrate wallet and set the signer
   const initSubstrateProvider = useCallback(async () => {
@@ -79,7 +72,7 @@ const Home: NextPage = () => {
     address: string
   ) => {
     // (We perform the send from an account, here using Alice's address)
-    const { gasRequired, result, output } = await contract.query.getAllList(
+    const { gasRequired, result, output } = await contract.query.getTodoList(
       address,
       {
         gasLimit: api.registry.createType("WeightV2", {
@@ -153,7 +146,7 @@ const Home: NextPage = () => {
     }
   };
 
-  const read = async () => {
+  const getTodoList = async () => {
     const provider = new WsProvider(WS_PROVIDER);
     const api = new ApiPromise(options({ provider }));
 
@@ -165,7 +158,6 @@ const Home: NextPage = () => {
 
     await query(api, contract, address);
   };
-
 
   return (
     <div className={styles.container}>
@@ -191,11 +183,6 @@ const Home: NextPage = () => {
                 </option>
               ))}
             </select>
-            <br />
-
-            <div>
-              <button onClick={read}>Read</button>
-            </div>
             <h4>{value}</h4>
           </>
         ) : (
@@ -212,7 +199,14 @@ const Home: NextPage = () => {
           </>
         )}
         <Divider />
+        <Button onClick={() => getTodoList()}>getTodoList</Button>
+        <Divider />
         <Button onClick={() => getLength()}>Get Length</Button>
+        <GetAllList
+          account={account}
+          address={address}
+          signer={extensions?.[0]?.signer}
+        />
         <AddItem
           account={account}
           address={address}
